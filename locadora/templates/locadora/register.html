@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro - Locadora</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'locadora/css/register.css' %}" />
+  </head>
+  <body>
+    <header>
+      <!-- Adicione seu conteúdo de cabeçalho aqui -->
+    </header>
+    <main class="register-container">
+      <h2>Cadastro</h2>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+          <label for="nome">Nome:</label>
+          <input type="text" name="nome" required />
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" name="email" required />
+        </div>
+        <div>
+          <label for="senha">Senha:</label>
+          <input type="password" name="senha" required />
+        </div>
+
+        {% if permitir_escolha_categoria %}
+          <!-- Campo de seleção de categoria para funcionários -->
+          <div>
+            <label for="categoria">Categoria:</label>
+            <select name="categoria" required>
+              <option value="visitante">Visitante</option>
+              <option value="funcionario">Funcionário</option>
+            </select>
+          </div>
+        {% else %}
+          <!-- Campo oculto para definir categoria como visitante para não logados -->
+          <input type="hidden" name="categoria" value="visitante" />
+        {% endif %}
+
+        <div>
+          <label for="foto">Foto:</label>
+          <input type="file" name="foto" accept="image/*" />
+        </div>
+        <button type="submit" class="btn-primary">Cadastrar</button>
+        <p>Já tem uma conta? <a href="{% url 'login' %}">Entre</a>.</p>
+      </form>
+    </main>
+  </body>
+</html>

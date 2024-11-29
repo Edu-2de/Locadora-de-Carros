@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Veículo</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'locadora/css/detalhes_veiculo.css' %}">
+</head>
+<body>
+    <main class="vehicle-details-container">
+        <section class="vehicle-info">
+            <h2>Detalhes do Veículo</h2>
+            <h3>{{ veiculo.marca }} {{ veiculo.modelo }}</h3>
+            {% if veiculo.imagem %}
+                <img src="{{ veiculo.imagem.url }}" alt="{{ veiculo.modelo }}" class="vehicle-image">
+            {% else %}
+                <p>Imagem não disponível</p>
+            {% endif %}
+            <p><strong>Placa:</strong> {{ veiculo.placa }}</p>
+            <p><strong>Descrição:</strong> {{ veiculo.descricao }}</p>
+            <p><strong>Preço por dia:</strong> R$ {{ veiculo.preco_diaria }}</p>
+        </section>
+
+        <section class="rental-section">
+            {% if is_funcionario %}
+                <!-- Opção de edição para funcionários -->
+                <a href="{% url 'editar_veiculo' veiculo.id %}" class="btn-editar">Editar Veículo</a>
+            {% else %}
+                <!-- Opção de aluguel/devolução para visitantes -->
+                {% if not veiculo.disponivel and alugado_por_usuario %}
+                    <form action="{% url 'devolver_veiculo' veiculo.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-devolver">Devolver agora</button>
+                    </form>
+                {% elif not veiculo.disponivel %}
+                    <p>Este veículo está indisponível para aluguel.</p>
+                {% elif usuario %}
+                    <form action="{% url 'alugar_veiculo' veiculo.id %}" method="POST">
+                        {% csrf_token %}
+                        <label for="data_devolucao">Data de Devolução:</label>
+                        <input type="date" id="data_devolucao" name="data_devolucao" required>
+                        <button type="submit" class="btn-alugar">Alugar</button>
+                    </form>
+                {% else %}
+                    <p class="login-warning">Para alugar este veículo, <a href="{% url 'login' %}">faça login</a>.</p>
+                {% endif %}
+            {% endif %}
+            <a href="{% url 'veiculos' %}" class="btn-voltar">Voltar à lista</a>
+        </section>
+    </main>
+</body>
+</html>

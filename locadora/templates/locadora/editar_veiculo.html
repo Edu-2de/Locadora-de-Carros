@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Veículo</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'locadora/css/editar_veiculo.css' %}">
+</head>
+<body>
+    <main class="edit-vehicle-container">
+        <h2>Editar Veículo</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="placa">Placa:</label>
+                <input type="text" name="placa" id="placa" value="{{ veiculo.placa }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="marca">Marca:</label>
+                <input type="text" name="marca" id="marca" value="{{ veiculo.marca }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="modelo">Modelo:</label>
+                <input type="text" name="modelo" id="modelo" value="{{ veiculo.modelo }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="preco_diaria">Preço por Dia (R$):</label>
+                <input type="number" name="preco_diaria" id="preco_diaria" value="{{ veiculo.preco_diaria }}" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <textarea name="descricao" id="descricao" rows="4">{{ veiculo.descricao }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="imagem">Imagem:</label>
+                {% if veiculo.imagem %}
+                    <img src="{{ veiculo.imagem.url }}" alt="{{ veiculo.modelo }}" class="vehicle-image-preview">
+                {% endif %}
+                <input type="file" name="imagem" id="imagem" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label for="imagem">Imagem2:</label>
+                {% if veiculo.imagem2 %}
+                    <img src="{{ veiculo.imagem2.url }}" alt="{{ veiculo.modelo }}" class="vehicle-image-preview">
+                {% endif %}
+                <input type="file" name="imagem2" id="imagem" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label for="imagem">Banner:</label>
+                {% if veiculo.banner %}
+                    <img src="{{ veiculo.banner.url }}" alt="{{ veiculo.modelo }}" class="vehicle-image-preview">
+                {% endif %}
+                <input type="file" name="banner" id="imagem" accept="image/*">
+            </div>
+
+            <button type="submit" class="btn-primary">Salvar Alterações</button>
+            <a href="{% url 'veiculos' %}" class="btn-secondary">Cancelar</a>
+        </form>
+    </main>
+</body>
+</html>

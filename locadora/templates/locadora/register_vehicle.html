@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Veículo</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'locadora/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'locadora/css/register_vehicle.css' %}">
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h1 class="logo">Locadora</h1>
+            <nav class="menu">
+                <ul>
+                    <li><a href="{% url 'home_funcionario' %}">Gerenciamento</a></li>
+                    <li><a href="{% url 'home' %}">Inicio</a></li>
+                    <li><a href="{% url 'register_vehicle' %}">Registrar Veículo</a></li>
+                    <li><a href="{% url 'lista_alugueis' %}">Lista de Aluguéis</a></li>
+                    <li><a href="{% url 'veiculos' %}">Gerenciar Veículos</a></li>
+                    <li><a href="{% url 'register' %}">Registrar Funcionarios/Usuarios</a></li>
+                </ul>
+            </nav>
+            <footer class="sidebar-footer">
+                <a href="{% url 'home' %}" class="btn-logout">Sair</a>
+            </footer>
+        </aside>
+
+        <main class="content">
+            <header class="content-header">
+                <h2>Registrar Veículo</h2>
+            </header>
+
+            <section class="form-section">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="placa">Placa:</label>
+                    <input type="text" name="placa" required>
+
+                    <label for="marca">Marca:</label>
+                    <input type="text" name="marca" required>
+
+                    <label for="modelo">Modelo:</label>
+                    <input type="text" name="modelo" required>
+
+                    <label for="preco_diaria">Preço Diário:</label>
+                    <input type="number" step="0.01" name="preco_diaria" required>
+
+                    <label for="descricao">Descrição:</label>
+                    <textarea name="descricao"></textarea>
+
+                    <label for="imagem">Imagem:</label>
+                    <input type="file" name="imagem">
+
+                    <label for="imagem">Imagem:</label>
+                    <input type="file" name="imagem2">
+
+                    <label for="imagem">Banner:</label>
+                    <input type="file" name="banner">
+
+
+                    <button type="submit" class="btn-submit">Registrar Veículo</button>
+                </form>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

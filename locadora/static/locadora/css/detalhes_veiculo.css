@@ -1,0 +1,129 @@
+/* Reset e Estilos Globais */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Estrutura Principal */
+.vehicle-details-container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Informações do Veículo */
+.vehicle-info h2 {
+  font-size: 2em;
+  color: #333;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.vehicle-info h3 {
+  font-size: 1.5em;
+  color: #555;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.vehicle-info p {
+  color: #666;
+  font-size: 1em;
+  margin: 8px 0;
+}
+
+.vehicle-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+/* Seção de Aluguel */
+.rental-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.rental-section label {
+  font-size: 1em;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+#data_devolucao {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 15px;
+}
+
+.btn-alugar {
+  background-color: #333;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.btn-alugar:hover {
+  background-color: #555;
+}
+
+.login-warning {
+  color: #d9534f;
+  font-size: 1em;
+  margin-bottom: 15px;
+}
+
+.login-warning a {
+  color: #333;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.btn-voltar {
+  color: #333;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 10px;
+}
+
+.btn-voltar:hover {
+  background-color: #333;
+  color: #fff;
+}

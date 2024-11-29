@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Locadora</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'locadora/css/login.css' %}">
+</head>
+<body>
+    <header>
+    </header>
+    <main class="login-container">
+        <h2>Entrar</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" name="email" required>
+            </div>
+            <div>
+                <label for="senha">Senha:</label>
+                <input type="password" name="senha" required>
+            </div>
+            <button type="submit" class="btn-primary">Login</button>
+        </form>
+        <p>Não tem uma conta? <a href="{% url 'register' %}">Cadastre-se aqui</a>.</p>
+    </main>
+</body>
+</html>

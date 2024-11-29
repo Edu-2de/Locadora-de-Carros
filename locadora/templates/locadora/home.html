@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'locadora/css/home.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Poiret+One&display=swap" rel="stylesheet">
+
+    <title>Bem-vindo - Locadora de Veículos</title>
+</head>
+<body>
+    <header>
+        <h1 id="logo">Locadora de Veículos</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'veiculos' %}">Veículos</a></li>
+    
+                {% if is_funcionario %}  <!-- Verifica se o usuário é um funcionário -->
+                    <li><a href="{% url 'home_funcionario' %}">Gerenciamento</a></li> <!-- Link para gerenciamento -->
+                {% endif %}
+            </ul>
+        </nav>
+
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Buscar veículo..." autocomplete="off">
+            <ul id="search-results"></ul>
+        </div>
+
+        <div class="user-info">
+            {% if usuario %}
+                <div class="user-dropdown">
+                    <!-- Checkbox escondido para controlar a exibição do menu -->
+                    <input type="checkbox" id="dropdown-toggle" class="dropdown-checkbox">
+                    <label for="dropdown-toggle">
+                        {% if usuario.foto %}
+                            <img src="{{ usuario.foto.url }}" alt="Foto de {{ usuario.nome }}" class="user-photo">
+                        {% else %}
+                            <img src="{% static 'locadora/images/pngwing.com.png' %}" alt="Foto de {{ usuario.nome }}" class="user-photo">
+                        {% endif %}
+                    </label>
+                    <div class="dropdown-content">
+                        <span>{{ usuario.nome }}</span>
+                        <a  style="--dynamic-bg-color: {{ cor }};" href="{% url 'logout' %}">Sair</a>
+                    </div>
+                </div>
+            {% else %}
+                <a  style="--dynamic-bg-color: {{ cor }};" href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+        
+        
+    </header>
+    <main>
+        <div id="vehicle_main">
+            {% if veiculo %}
+                <div id="informations_vehicle_main">
+                    <h2 id="model_vehicle_main" style="--dynamic-bg-color: {{ cor }};" data-text="{{ veiculo.marca }} {{ veiculo.modelo }}"> {{ veiculo_modelo_upper }}</h2>
+                </div>
+    
+                <!-- Envolva a imagem com a tag <a> para redirecionamento -->
+                <div id="image_vehicle_main">
+                    <a href="{% url 'detalhes_veiculo' veiculo.id %}"> <!-- Link para detalhes do veículo -->
+                        <img id="imagem_main" src="{{ veiculo.imagem.url }}" alt="{{ veiculo.modelo }}" class="vehicle-image">
+                    </a>
+                </div>
+                
+                <div id="div_color_main" style="--dynamic-bg-color: {{ cor }};"></div>
+            {% else %}
+                <p>Nenhum veículo disponível no momento.</p>
+            {% endif %}
+        </div>
+
+
+    
+        <section class="vehicles-section">
+            <div class="title-section">
+                <p id="titulo_main_veichle">Veículos Populares</p>
+            </div>
+            <div class="sessao_veiculo">
+                {% for veiculo in veiculos_selecionados %}
+                    <div class="vehicle-card">
+                        <h3>{{ veiculo.marca }} {{ veiculo.modelo }}</h3>
+                        <img src="{{ veiculo.imagem2.url }}" alt="{{ veiculo.modelo }}" class="vehicle-image">
+                        <div class="vehicle-info">
+                            <p>Placa: {{ veiculo.placa }}</p>
+                            <p class="price">R$ {{ veiculo.preco_diaria }}/dia</p>
+                            {% if is_funcionario %}
+                                <a href="{% url 'editar_veiculo' veiculo.id %}" class="btn-primary">Editar</a>
+                            {% else %}
+                                <a href="{% url 'alugar_veiculo' veiculo.id %}" class="btn-secondary">Alugar</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <div id="banner">
+            {% if banner_url %}
+                <img id="image_banner" src="{{ banner_url }}" alt="Banner aleatorio">
+            {% else %}
+                <p>Banner indisponível</p>
+            {% endif %}
+
+            <!--<p id="text_banner">CONFIRA AGORA</p>-->
+        </div>
+
+
+        <section class="vehicles-section">
+            <div class="title-section">
+                <p id="titulo_main_veichle">Mais Modelos</p>
+            </div>
+            <div class="sessao_veiculo">
+                {% for veiculo in veiculos_selecionados2 %}
+                    <div class="vehicle-card">
+                        <h3>{{ veiculo.marca }} {{ veiculo.modelo }}</h3>
+                        <img src="{{ veiculo.imagem2.url }}" alt="{{ veiculo.modelo }}" class="vehicle-image">
+                        <div class="vehicle-info">
+                            <p>Placa: {{ veiculo.placa }}</p>
+                            <p class="price">R$ {{ veiculo.preco_diaria }}/dia</p>
+                            {% if is_funcionario %}
+                                <a href="{% url 'editar_veiculo' veiculo.id %}" class="btn-primary">Editar</a>
+                            {% else %}
+                                <a href="{% url 'alugar_veiculo' veiculo.id %}" class="btn-secondary">Alugar</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+
+
+    <script>
+    document.getElementById('search-bar').addEventListener('input', function () {
+        let query = this.value;
+        if (query.length > 1) {  // Executa a pesquisa somente com mais de uma letra
+            fetch(`/buscar_veiculos/?q=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    const resultsContainer = document.getElementById('search-results');
+                    resultsContainer.innerHTML = '';
+
+                    data.results.forEach(item => {
+                        let li = document.createElement('li');
+                        li.classList.add('search-result-item');
+
+                        let img = document.createElement('img');
+                        img.src = item.imagem_url || "{% static 'locadora/images/pngwing.com.png' %}";
+                        img.alt = `Imagem de ${item.marca} ${item.modelo}`;
+                        img.classList.add('search-result-image');
+
+                        let text = document.createElement('span');
+                        text.textContent = `${item.marca} ${item.modelo}`;
+                        text.classList.add('search-result-text'); // Classe para o texto
+
+                        li.appendChild(img);
+                        li.appendChild(text);
+
+                        li.addEventListener('click', function() {
+                            window.location.href = `/veiculo/${item.id}/`;
+                        });
+
+                        resultsContainer.appendChild(li);
+                    });
+                });
+        } else {
+            document.getElementById('search-results').innerHTML = '';
+        }
+    });
+    // Adiciona o evento de hover ao `#image_vehicle_main`
+    document.getElementById('image_vehicle_main').addEventListener('mouseenter', () => {
+        document.getElementById('model_vehicle_main').style.marginTop = '25%';
+    });
+
+    // Restaura a posição quando o hover é removido
+    document.getElementById('image_vehicle_main').addEventListener('mouseleave', () => {
+        document.getElementById('model_vehicle_main').style.marginTop = '0%';
+    });
+    </script>
+</body>
+</html>

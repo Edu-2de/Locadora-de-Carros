@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locadora de Veículos - Coleção</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'locadora/css/carros.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Poiret+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1 id="logo">Locadora de Veículos</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Início</a></li>
+                {% if is_funcionario %}
+                    <li><a href="{% url 'home_funcionario' %}">Gerenciamento</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <div class="user-info">
+            {% if usuario %}
+                <div class="user-dropdown">
+                    <input type="checkbox" id="dropdown-toggle" class="dropdown-checkbox">
+                    <label for="dropdown-toggle">
+                        {% if usuario.foto %}
+                            <img src="{{ usuario.foto.url }}" alt="Foto de {{ usuario.nome }}" class="user-photo">
+                        {% else %}
+                            <img src="{% static 'locadora/images/pngwing.com.png' %}" alt="Foto de {{ usuario.nome }}" class="user-photo">
+                        {% endif %}
+                    </label>
+                    <div class="dropdown-content">
+                        <span>{{ usuario.nome }}</span>
+                        <a href="{% url 'logout' %}">Sair</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <section class="vehicles-section">
+        <h2>Nossa Coleção</h2>
+        <div class="vehicle-list">
+            {% for veiculo in veiculos %}
+                <div class="vehicle-card">
+                    <img src="{{ veiculo.imagem.url }}" alt="{{ veiculo.modelo }}" class="vehicle-image">
+                    <div class="vehicle-info">
+                        <h3>{{ veiculo.marca }} {{ veiculo.modelo }}</h3>
+                        <p>Placa: {{ veiculo.placa }}</p>
+                        <p class="price">R$ {{ veiculo.preco_diaria }}/dia</p>
+                        {% if is_funcionario %}
+                            <a href="{% url 'editar_veiculo' veiculo.id %}" class="btn-primary">Editar</a>
+                        {% else %}
+                            <a href="{% url 'alugar_veiculo' veiculo.id %}" class="btn-secondary">Alugar</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</body>
+</html>

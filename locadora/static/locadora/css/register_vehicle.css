@@ -1,0 +1,176 @@
+/* Geral */
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin: 0;
+  display: flex;
+  overflow-x: hidden;
+  background-color: #f4f6f9;
+}
+
+/* Dashboard */
+.dashboard {
+  display: flex;
+  width: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: fixed;
+  left: 0;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+}
+
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px 0;
+  color: #fff;
+  margin: 0;
+}
+
+.menu {
+  flex-grow: 1;
+  padding: 20px 0;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu ul li {
+  margin-bottom: 15px;
+}
+
+.menu ul li a {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 20px;
+  display: block;
+  transition: background 0.3s, color 0.3s;
+  text-align: center;
+}
+
+.menu ul li a:hover {
+  background-color: #444;
+  color: #fff;
+}
+
+.sidebar-footer {
+  padding: 20px;
+  text-align: center;
+}
+
+.btn-logout {
+  background-color: #ff5a5f;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-logout:hover {
+  background-color: #ff3b3f;
+}
+
+/* Main Content */
+.content {
+  margin-left: 250px;
+  padding: 30px;
+  width: calc(100% - 250px);
+}
+
+.content-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #e9ecef;
+  padding: 15px 30px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+
+/* Form Section */
+.form-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  font-weight: bold;
+  color: #555;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+input[type="file"] {
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: 100%;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+input[type="file"]:focus {
+  outline: none;
+  border-color: #333;
+  box-shadow: 0 0 5px rgba(50, 50, 50, 0.3);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.btn-submit {
+  background-color: #333;
+  color: #fff;
+  padding: 12px 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-submit:hover {
+  background-color: #555;
+}

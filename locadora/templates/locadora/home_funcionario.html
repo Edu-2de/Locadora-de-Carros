@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'locadora/css/home_funcionarios.css' %}">
+    <title>Painel do Funcionário - Locadora</title>
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h1 class="logo">Locadora</h1>
+            <nav class="menu">
+                <ul>
+                    <li><a href="{% url 'home_funcionario' %}">Gerenciamento</a></li>
+                    <li><a href="{% url 'home' %}">Inicio</a></li>
+                    <li><a href="{% url 'register_vehicle' %}">Registrar Veículo</a></li>
+                    <li><a href="{% url 'lista_alugueis' %}">Lista de Aluguéis</a></li>
+                    <li><a href="{% url 'veiculos' %}">Gerenciar Veículos</a></li>
+                    <li><a href="{% url 'register' %}">Registrar Funcionarios/Usuarios</a></li>
+                </ul>
+            </nav>
+            <footer class="sidebar-footer">
+                <a href="{% url 'home' %}" class="btn-logout">Sair</a>
+            </footer>
+        </aside>
+        
+        <main class="content">
+            <header class="content-header">
+                <div class="user-info">
+                    {% if usuario.foto %}
+                        <img src="{{ usuario.foto.url }}" alt="Foto de {{ usuario.nome }}" class="user-photo">
+                    {% endif %}
+                    <span>{{ usuario.nome }}</span>
+                </div>
+            </header>
+
+            <section class="welcome">
+                <h2>Bem-vindo, {{ usuario.nome }}!</h2>
+                <p>Aqui você pode gerenciar veículos, registrar novos e visualizar aluguéis ativos.</p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

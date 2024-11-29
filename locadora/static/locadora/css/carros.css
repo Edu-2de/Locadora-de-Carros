@@ -1,0 +1,321 @@
+body {
+  font-family: sans-serif;
+  color: #333;
+  background-color: #f0ede9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+.poiret-one-regular {
+  font-family: "Poiret One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Navbar */
+header {
+  width: 100%;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: sticky;
+  top: 0;
+  background-color: #f0ede9;/* Transparência sutil */
+  backdrop-filter: blur(3px); /* Efeito de desfoque */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Linha sutil */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  z-index: 100;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li a {
+  font-size: 1rem;
+  color: #333;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #fff;
+  background-color: #333;
+}
+
+/* Barra de Pesquisa */
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#search-bar {
+  width: 300px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  transition: box-shadow 0.3s;
+}
+
+#search-bar:focus {
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 5px;
+  padding: 0;
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.search-result-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-result-item:hover {
+  background-color: #f0f0f0;
+}
+
+.search-result-image {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.search-result-text {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Estilo da área de informações do usuário */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaçamento entre os elementos */
+}
+
+/* Login */
+.user-info a {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--dynamic-bg-color);
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.user-info a:hover {
+  background-color: var(--dynamic-bg-color);
+}
+
+/* Dropdown da foto do usuário */
+/* Oculta o checkbox */
+.dropdown-checkbox {
+  display: none;
+}
+
+/* Dropdown da foto do usuário */
+.user-dropdown {
+  position: relative;
+}
+
+.user-photo {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border: 2px solid var(--dynamic-bg-color);
+  cursor: pointer;
+  transition: border 0.3s;
+}
+
+/* Oculta o menu dropdown por padrão */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 110%; /* Posiciona logo abaixo da imagem */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  min-width: 100px;
+  z-index: 20;
+}
+
+/* Exibe o menu dropdown quando o checkbox está marcado */
+.dropdown-checkbox:checked + label + .dropdown-content {
+  display: block;
+}
+
+.dropdown-content span {
+  display: block;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.dropdown-content a {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #333;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+  background-color: #1c274c;
+}
+.btn-primary, .btn-secondary {
+  background-color: #333;
+  color: #fff;
+  padding: 16px 28px;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+  max-width: 20%;
+  min-width: 20%;
+}
+
+
+/* Navbar (Inalterada conforme pedido) */
+/* Seção de Veículos */
+.vehicles-section {
+  width: 90%;
+  max-width: 800px;
+  margin: 40px auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.vehicles-section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Lista de veículos organizada verticalmente */
+.vehicle-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Cartão de veículo */
+.vehicle-card {
+  display: flex;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9fafc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s;
+  align-items: center;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Estilo de imagem com tamanho predefinido */
+.vehicle-image {
+  width: 200px; /* Largura fixa */
+  height: auto; /* Altura automática para manter a proporção */
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.vehicle-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vehicle-info h3 {
+  font-size: 1.8rem;
+  color: #333;
+  margin: 0 0 10px;
+}
+
+.vehicle-info p {
+  font-size: 1rem;
+  color: #666;
+  margin: 5px 0;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #e63946;
+  margin: 10px 0;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.3s;
+  font-weight: bold;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  background-color: #1c274c;
+}
