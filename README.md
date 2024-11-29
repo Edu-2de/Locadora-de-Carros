@@ -1,6 +1,6 @@
 # Locadora-de-Carros
 
-
+![Capa do projeto](imagens/capa.png)
 
 Projeto: Site de Locadora de Carros
 Este projeto é um site para uma locadora de carros, desenvolvido com Django, utilizando templates HTML para renderização, estilização com CSS e interatividade básica com JavaScript.
