@@ -1,25 +1,37 @@
-# Locadora-de-Carros
+# Car Rental Website
 
-![Capa do projeto](imagens/capa.png)
+## Project Overview
 
-Projeto: Site de Locadora de Carros
-Este projeto é um site para uma locadora de carros, desenvolvido com Django, utilizando templates HTML para renderização, estilização com CSS e interatividade básica com JavaScript.
+This project is a fully functional car rental website, built almost entirely with Django. It utilizes Django's backend structure for managing URLs, views, and models, and employs dynamic HTML templates for rendering. The frontend is styled with CSS and enhanced with basic JavaScript for interactivity.
 
-Funcionalidades:
-Página inicial com destaque para promoções e veículos disponíveis.
-Lista de veículos com informações como modelo, preço e disponibilidade.
-Formulário de reserva funcional para simulação de locações.
-Design responsivo, adaptado para diferentes dispositivos (desktop, tablet e mobile).
-Uso de JavaScript para validação de formulários e interatividade, como filtros de busca dinâmicos.
-Objetivo do projeto:
-Praticar habilidades de desenvolvimento web completo, como:
+## Features
 
-![Conteúdo do projeto](imagens/conteudo.png)
+- **Homepage:** Highlights current promotions and available vehicles.
+- **Vehicle List:** Displays cars with details such as model, price, and availability.
+- **Reservation Form:** Fully functional form for simulating car bookings.
+- **Responsive Design:** Adapts seamlessly to desktop, tablet, and mobile devices.
+- **Interactive JavaScript:** Used for form validation and dynamic search filters.
 
-Estruturação do backend com Django (URLs, views e models).
-Criação de templates HTML dinâmicos.
-Estilização moderna e responsiva com CSS.
-Implementação de funcionalidades interativas com JavaScript.
-Este projeto é ideal para demonstrar um exemplo funcional de um site voltado para locação de carros, combinando backend robusto com frontend estilizado e interativo.
+## Project Objectives
 
-![Conteúdo2 do projeto](imagens/conteudo2.png)
+The main objective of this project is to practice and demonstrate full-stack web development skills, including:
+
+- Structuring the backend with Django (URLs, views, and models)
+- Creating dynamic and reusable HTML templates
+- Modern, responsive styling with CSS
+- Implementing interactive features with JavaScript
+
+## Ideal Use
+
+This project serves as a practical and robust example of a car rental website, combining a strong Django backend with a stylish and interactive frontend.
+
+## Getting Started
+
+1. **Clone the repository.**
+2. Install the dependencies listed in `requirements.txt`.
+3. Run migrations and start the Django development server.
+4. Access the site in your browser and explore its features.
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
